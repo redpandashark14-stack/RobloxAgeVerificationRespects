@@ -26,6 +26,10 @@
       overflow: hidden;
     }
 
+    #main {
+      z-index: 1;
+    }
+
     button {
       background: none;
       border: 2px solid white;
@@ -59,9 +63,9 @@
     }
 
     .modal-content {
-      background: #0b1a33;
+      background: #001a66; /* VERY BLUE */
       padding: 30px;
-      max-width: 400px;
+      max-width: 420px;
       border: 2px solid white;
       position: relative;
     }
@@ -85,9 +89,31 @@
       font-size: 15rem;
       z-index: 20;
     }
+
+    /* Cry Screen */
+    .cry {
+      position: fixed;
+      inset: 0;
+      background: #001a66;
+      display: none;
+      flex-wrap: wrap;
+      font-size: 2.5rem;
+      overflow: hidden;
+      z-index: 15;
+    }
+
+    .go-back {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 30;
+      display: none;
+    }
   </style>
 </head>
 <body>
+
+  <button class="go-back" id="goBack" onclick="resetPage()">Go Back</button>
 
   <div id="main">
     <button onclick="payRespects()">Pay Respects (F)</button>
@@ -107,27 +133,59 @@
     </div>
   </div>
 
-  <!-- Salute Screen -->
+  <!-- Salute -->
   <div class="salute" id="salute">🫡</div>
 
+  <!-- Cry Screen -->
+  <div class="cry" id="cry"></div>
+
   <script>
+    const cryContainer = document.getElementById("cry");
+
+    function fillCryingEmojis() {
+      cryContainer.innerHTML = "";
+      for (let i = 0; i < 1000; i++) {
+        cryContainer.innerHTML += "😭";
+      }
+    }
+
     function payRespects() {
       document.body.style.background = "green";
       document.getElementById("salute").style.display = "flex";
+      document.getElementById("main").style.display = "none";
+      document.getElementById("goBack").style.display = "block";
     }
 
     function ageVerify() {
-      document.body.style.background = "#0b1a33";
+      document.body.style.background = "#001a66"; // extra blue
       document.getElementById("modal").style.display = "flex";
+      document.getElementById("main").style.display = "none";
+      document.getElementById("goBack").style.display = "block";
     }
 
     function closeModal() {
       document.getElementById("modal").style.display = "none";
-      document.body.innerHTML = "😭".repeat(500);
-      document.body.style.fontSize = "2rem";
-      document.body.style.background = "#0b1a33";
+      fillCryingEmojis();
+      cryContainer.style.display = "flex";
     }
+
+    function resetPage() {
+      document.body.style.background = "black";
+      document.getElementById("salute").style.display = "none";
+      document.getElementById("modal").style.display = "none";
+      cryContainer.style.display = "none";
+      document.getElementById("main").style.display = "block";
+      document.getElementById("goBack").style.display = "none";
+    }
+
+    // Press F to pay respects
+    document.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "f") {
+        payRespects();
+      }
+    });
   </script>
 
 </body>
 </html>
+
