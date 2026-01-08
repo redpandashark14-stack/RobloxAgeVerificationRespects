@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Age Verify / Pay Respects</title>
+
+  <!-- Lexend Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Lexend', sans-serif;
+      color: white;
+    }
+
+    body {
+      margin: 0;
+      background: black;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    button {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+
+    h3 {
+      position: fixed;
+      bottom: 10px;
+      font-weight: 300;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background: #0b1a33;
+      padding: 30px;
+      max-width: 400px;
+      border: 2px solid white;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* Salute Screen */
+    .salute {
+      position: fixed;
+      inset: 0;
+      background: green;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 15rem;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="main">
+    <button onclick="payRespects()">Pay Respects (F)</button>
+    <button onclick="ageVerify()">Age Verify</button>
+  </div>
+
+  <h3>Made By Infinity Frahab</h3>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">✖</div>
+      <p>
+        Your estimated age is -284738795930873,<br>
+        you may chat with people in your age group.
+      </p>
+    </div>
+  </div>
+
+  <!-- Salute Screen -->
+  <div class="salute" id="salute">🫡</div>
+
+  <script>
+    function payRespects() {
+      document.body.style.background = "green";
+      document.getElementById("salute").style.display = "flex";
+    }
+
+    function ageVerify() {
+      document.body.style.background = "#0b1a33";
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.body.innerHTML = "😭".repeat(500);
+      document.body.style.fontSize = "2rem";
+      document.body.style.background = "#0b1a33";
+    }
+  </script>
+
+</body>
+</html>
